@@ -20,7 +20,7 @@ const PIECE_COMPONENTS = {
 export const Player: React.FC<PlayerProps> = ({ username, piece, color }) => {
   const PieceComponent = PIECE_COMPONENTS[piece];
   const inverseColor = color === "white" ? "black" : "white";
-  const classes = `flex items-center gap-2 bg-${color} text-${inverseColor} p-4`;
+  const classes = `flex items-center gap-2 w-full bg-${color} text-${inverseColor} p-4`;
 
   return (
     <div className={classes}>
