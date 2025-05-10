@@ -7,4 +7,4 @@ export const PIECES = [
   "king",
 ] as const;
 
-export const COLORS = ["white", "black"] as const;
+export const COLORS = ["gm-dark-square", "gm-light-square"] as const;

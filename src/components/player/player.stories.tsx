@@ -6,7 +6,7 @@ const meta: Meta<typeof Player> = {
   component: Player,
   decorators: [
     (Story) => (
-      <div className="flex justify-center items-center bg-gray-500">
+      <div className="flex justify-center items-center">
         <Story />
       </div>
     ),
@@ -31,6 +31,6 @@ export const Default: Story = {
   args: {
     username: "MagnusCarlsen",
     piece: "queen",
-    color: "white",
+    color: "gm-dark-square",
   },
 };

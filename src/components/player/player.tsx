@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { PlayerProps } from "./player.types";
 import {
   Pawn,
@@ -19,11 +20,16 @@ const PIECE_COMPONENTS = {
 
 export const Player: React.FC<PlayerProps> = ({ username, piece, color }) => {
   const PieceComponent = PIECE_COMPONENTS[piece];
-  const inverseColor = color === "white" ? "black" : "white";
-  const classes = `flex items-center gap-2 w-full bg-${color} text-${inverseColor} p-4`;
+
+  const isDark = color === "gm-dark-square";
 
   return (
-    <div className={classes}>
+    <div
+      className={clsx("flex items-center gap-2 w-full p-4", {
+        "bg-gm-dark-square text-gm-light-square": isDark,
+        "bg-gm-light-square text-gm-dark-square": !isDark,
+      })}
+    >
       <PieceComponent width={32} height={32} />
       {username}
     </div>
