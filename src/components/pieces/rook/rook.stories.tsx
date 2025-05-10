@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Rook } from "./Rook";
+import { Rook } from "./rook";
 
 const meta: Meta<typeof Rook> = {
   component: Rook,
