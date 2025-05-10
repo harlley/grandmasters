@@ -8,6 +8,16 @@ import {
   Queen,
   King,
 } from "../../components/pieces";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 const PIECE_COMPONENTS = {
   pawn: Pawn,
@@ -24,14 +34,31 @@ export const Player: React.FC<PlayerProps> = ({ username, piece, color }) => {
   const isDark = color === "gm-dark-square";
 
   return (
-    <div
-      className={clsx("flex items-center gap-2 w-full p-4", {
-        "bg-gm-dark-square text-gm-light-square": isDark,
-        "bg-gm-light-square text-gm-dark-square": !isDark,
-      })}
-    >
-      <PieceComponent width={32} height={32} />
-      {username}
-    </div>
+    <Drawer>
+      <DrawerTrigger asChild>
+        <div
+          className={clsx("flex items-center gap-2 w-full p-4 cursor-pointer", {
+            "bg-gm-dark-square text-gm-light-square": isDark,
+            "bg-gm-light-square text-gm-dark-square": !isDark,
+          })}
+        >
+          <PieceComponent width={32} height={32} />
+          {username}
+        </div>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Player Details</DrawerTitle>
+          <DrawerDescription>Details for {username}.</DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
+          <DrawerClose>
+            <span className="text-sm text-blue-500 hover:underline cursor-pointer">
+              Cancel
+            </span>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 };

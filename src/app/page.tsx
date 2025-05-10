@@ -1,5 +1,7 @@
-import { HelloWorld } from "@/components/hello-world";
+import { PlayerList } from "@/components/player-list/player-list";
 
-export default function Home() {
-  return <HelloWorld />;
+export default async function Home() {
+  const response = await fetch("https://api.chess.com/pub/titled/GM");
+  const data = await response.json();
+  return <PlayerList players={data.players} />;
 }
