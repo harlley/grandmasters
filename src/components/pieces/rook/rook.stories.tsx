@@ -3,7 +3,6 @@ import { Rook } from "./rook";
 
 const meta: Meta<typeof Rook> = {
   component: Rook,
-  title: "components/pieces/Rook",
 };
 
 export default meta;

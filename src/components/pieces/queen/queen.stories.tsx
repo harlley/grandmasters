@@ -3,7 +3,6 @@ import { Queen } from "./queen";
 
 const meta: Meta<typeof Queen> = {
   component: Queen,
-  title: "components/pieces/queen",
 };
 
 export default meta;

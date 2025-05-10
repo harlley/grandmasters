@@ -3,7 +3,6 @@ import { King } from "./king";
 
 const meta: Meta<typeof King> = {
   component: King,
-  title: "components/pieces/king",
 };
 
 export default meta;

@@ -3,7 +3,6 @@ import { Pawn } from "./pawn";
 
 const meta: Meta<typeof Pawn> = {
   component: Pawn,
-  title: "components/pieces/pawn",
 };
 
 export default meta;
