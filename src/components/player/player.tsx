@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import type { PlayerProps } from "./player.types";
 import {
@@ -10,14 +12,14 @@ import {
 } from "../../components/pieces";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { Profile } from "@/components/profile";
+import { useState } from "react";
+import { Player as PlayerType } from "@/components/types";
 
 const PIECE_COMPONENTS = {
   pawn: Pawn,
@@ -33,32 +35,43 @@ export const Player: React.FC<PlayerProps> = ({ username, piece, color }) => {
 
   const isDark = color === "gm-dark-square";
 
+  const className = clsx("flex items-center gap-2 w-full p-4 cursor-pointer", {
+    "bg-gm-dark-square text-gm-light-square": isDark,
+    "bg-gm-light-square text-gm-dark-square": !isDark,
+  });
+
+  const [player, setPlayer] = useState<PlayerType | null>(null);
+
+  const onClick = async () => {
+    const response = await fetch(
+      `https://api.chess.com/pub/player/${username}`
+    );
+    const data = await response.json();
+    setPlayer(data);
+  };
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <div
-          className={clsx("flex items-center gap-2 w-full p-4 cursor-pointer", {
-            "bg-gm-dark-square text-gm-light-square": isDark,
-            "bg-gm-light-square text-gm-dark-square": !isDark,
-          })}
-        >
+        <div className={className} onClick={onClick}>
           <PieceComponent width={32} height={32} />
           {username}
         </div>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Player Details</DrawerTitle>
-          <DrawerDescription>Details for {username}.</DrawerDescription>
+          <DrawerTitle>{username}</DrawerTitle>
         </DrawerHeader>
-        <DrawerFooter>
-          <DrawerClose>
-            <span className="text-sm text-blue-500 hover:underline cursor-pointer">
-              Cancel
-            </span>
-          </DrawerClose>
-        </DrawerFooter>
+        {player ? <Profile player={player} /> : <PlayerSkeleton />}
       </DrawerContent>
     </Drawer>
+  );
+};
+
+const PlayerSkeleton = () => {
+  return (
+    <div className="flex items-center gap-2 w-full p-4 cursor-pointer">
+      loading...
+    </div>
   );
 };

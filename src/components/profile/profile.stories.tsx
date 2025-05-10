@@ -1,35 +1,37 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PlayerList } from "./player-list";
 import { http, HttpResponse } from "msw";
-import { mock } from "./player-list.mock";
+import { Profile } from "./profile";
+import { Player } from "@/components/types";
+import { mock } from "./profile.mock";
 
-const endpoint = "https://api.chess.com/pub/titled/GM";
+const endpoint = "https://api.chess.com/pub/player/john";
 
-const meta: Meta<typeof PlayerList> = {
-  component: PlayerList,
+const meta: Meta<typeof Profile> = {
+  component: Profile,
   parameters: {
     msw: {
       handlers: {
-        profile: http.get(endpoint, () => {
+        playerProfile: http.get(endpoint, () => {
           return HttpResponse.json(mock);
         }),
       },
     },
   },
 };
+
 export default meta;
 
-type Story = StoryObj<typeof PlayerList>;
+type Story = StoryObj<typeof Profile>;
 
 export const Default: Story = {
   loaders: [
     async () => {
       const response = await fetch(endpoint);
       const data = await response.json();
-      return { players: data.players };
+      return { player: data as Player };
     },
   ],
   render: (args, { loaded }) => {
-    return <PlayerList players={loaded.players} />;
+    return <Profile player={loaded.player} />;
   },
 };
