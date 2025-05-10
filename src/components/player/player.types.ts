@@ -1,6 +1,8 @@
-export type Piece = "pawn" | "rook" | "knight" | "bishop" | "queen" | "king";
+import { PIECES, COLORS } from "./constants";
 
-export type Color = "white" | "black";
+export type Piece = (typeof PIECES)[number];
+
+export type Color = (typeof COLORS)[number];
 
 export type PlayerProps = {
   username: string;
