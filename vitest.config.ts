@@ -16,7 +16,24 @@ export default defineConfig({
   resolve: {
     alias: {
       "@/": path.resolve(dirname, "./src/"),
+      // Add alias for util to prevent browser compatibility issues
+      // util: "util/", // This was removed as it was ineffective
     },
+  },
+  optimizeDeps: {
+    include: [
+      "@storybook/experimental-nextjs-vite",
+      "msw-storybook-addon",
+      "sb-original/default-loader",
+      "sb-original/image-context",
+      "clsx",
+      "react",
+      "vaul",
+      "tailwind-merge",
+    ],
+    exclude: [
+      "util", // Exclude util from optimization
+    ],
   },
   test: {
     workspace: [
@@ -33,7 +50,8 @@ export default defineConfig({
             provider: "playwright",
             name: "chromium",
           },
-          setupFiles: [".storybook/vitest.setup.ts"],
+          setupFiles:
+            process.env.CI === "true" ? [] : [".storybook/vitest.setup.ts"],
         },
       },
       // Project for general unit tests
