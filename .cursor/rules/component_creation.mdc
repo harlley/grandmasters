@@ -1,0 +1,50 @@
+---
+description: component Creation
+globs: 
+alwaysApply: false
+---
+Rule: Component Creation
+
+When creating a new component in this project, follow these conventions (example: player component):
+
+**Always carefully follow all rules below, especially naming conventions.** 
+
+1. Directory Structure
+- Each component must have its own folder under src/components/, named in kebab-case (lowercase, hyphen-separated, e.g., time-since for TimeSince).
+- The folder and all files inside it (including the main component file, types, constants, stories, and index) must use kebab-case strictly (e.g., time-since.tsx, time-since.types.ts, constants.ts, time-since.stories.tsx, index.ts).
+- The folder must contain:
+  - [component].tsx: the main component file (e.g., time-since.tsx)
+  - index.ts: re-exports the main component
+  - [component].types.ts: TypeScript types for the component's props and related types (e.g., time-since.types.ts)
+  - constants.ts: for any constants used by the component
+  - [component].stories.tsx: Storybook stories for the component (e.g., time-since.stories.tsx)
+
+2. Component Implementation
+- Use a functional component with TypeScript.
+- All props must be typed in [component].types.ts and imported into the main component file.
+- Export the component as the default export in [component].tsx.
+- Use named exports for types and constants.
+- **When creating a new component, use only simple boilerplate content. Do not infer or implement any logic or behavior unless it is explicitly requested.**
+
+3. Index File
+- The index.ts file must re-export the main component as the default export.
+
+4. Constants
+- Place all constants in constants.ts and import them into the main component file as needed.
+
+5. Stories
+- Add a [component].stories.tsx file for Storybook stories, demonstrating the component's usage.
+
+6. General Guidelines
+- Keep components presentational; do not include business logic.
+- Use hooks for side effects.
+- Write clear, concise JSDoc comments for all exported functions and types.
+- Ensure all new components are covered by unit tests (test file not shown in the example, but required).
+
+Example: time-since component structure
+src/components/time-since/
+  time-since.tsx
+  time-since.types.ts
+  constants.ts
+  time-since.stories.tsx
+  index.ts
