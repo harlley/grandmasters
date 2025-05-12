@@ -1,4 +1,6 @@
-export const stats = {
+import { Stats } from "./stats-tabs.types";
+
+export const stats: Stats = {
   chess_rapid: {
     last: {
       rating: 2516,
@@ -48,26 +50,6 @@ export const stats = {
       win: 1011,
       loss: 795,
       draw: 246,
-    },
-  },
-  tactics: {
-    highest: {
-      rating: 3728,
-      date: 1734252044,
-    },
-    lowest: {
-      rating: 1000,
-      date: 1714573164,
-    },
-  },
-  puzzle_rush: {
-    best: {
-      total_attempts: 71,
-      score: 68,
-    },
-    daily: {
-      total_attempts: 67,
-      score: 64,
     },
   },
 };

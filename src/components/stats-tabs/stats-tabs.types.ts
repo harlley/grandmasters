@@ -24,10 +24,10 @@ type ChessGameStatsData = {
   record: GameRecord;
 };
 
-export type GamesData = {
+export type Stats = {
   [key in (typeof GAMES)[number]["id"]]?: ChessGameStatsData;
 };
 
 export type StatsTabsProps = {
-  stats: GamesData;
+  stats: Stats;
 };

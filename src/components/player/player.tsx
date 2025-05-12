@@ -22,7 +22,7 @@ import { Profile } from "@/components/profile";
 import { usePlayerProfile } from "@/api/fetchPlayerProfile";
 import { usePlayerStats } from "@/api/fetchPlayerStats";
 import { StatsTabs } from "@/components/stats-tabs";
-import { GamesData } from "@/components/stats-tabs/stats-tabs.types";
+import { Stats } from "@/components/stats-tabs/stats-tabs.types";
 import { SkeletonProfile } from "@/components/skeleton-profile";
 
 const PIECE_COMPONENTS = {
@@ -39,10 +39,13 @@ export const Player = ({ username, piece, color }: PlayerProps) => {
 
   const isDark = color === "gm-dark-square";
 
-  const className = clsx("flex items-center gap-2 w-full p-4 cursor-pointer", {
-    "bg-gm-dark-square text-gm-light-square": isDark,
-    "bg-gm-light-square text-gm-dark-square": !isDark,
-  });
+  const className = clsx(
+    "flex items-center gap-2 w-full py-6 px-4 cursor-pointer",
+    {
+      "bg-gm-dark-square text-gm-light-square": isDark,
+      "bg-gm-light-square text-gm-dark-square": !isDark,
+    }
+  );
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -51,10 +54,10 @@ export const Player = ({ username, piece, color }: PlayerProps) => {
       <DrawerTrigger asChild>
         <div className={className}>
           <PieceComponent width={32} height={32} />
-          {username}
+          <span className="text-lg">{username}</span>
         </div>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="max-w-screen-lg mx-auto">
         <DrawerHeader className="sr-only">
           <DrawerTitle>{username}</DrawerTitle>
         </DrawerHeader>
@@ -76,9 +79,9 @@ function PlayerData({ username }: { username: string }) {
   });
 
   return player ? (
-    <div className="flex flex-col gap-6 p-4 overflow-hidden">
+    <div className="flex flex-col gap-6 p-4">
       <Profile player={player} />
-      <StatsTabs stats={stats as unknown as GamesData} />
+      <StatsTabs stats={stats as unknown as Stats} />
     </div>
   ) : null;
 }
