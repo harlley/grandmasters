@@ -29,5 +29,5 @@ export type GamesData = {
 };
 
 export type StatsTabsProps = {
-  games: GamesData;
+  stats: GamesData;
 };

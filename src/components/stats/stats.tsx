@@ -10,9 +10,9 @@ export const Stats = ({
   recordDraw,
 }: StatsProps) => {
   return (
-    <Card>
+    <Card className="py-4">
       <CardContent className="p-0">
-        <div className="p-4">
+        <div className="px-4">
           <div className="flex justify-between mb-4">
             <div>
               <p className="text-xs text-muted-foreground">Current rating</p>
@@ -27,8 +27,10 @@ export const Stats = ({
 
         <Separator />
 
-        <div className="p-4">
-          <p className="text-xs text-muted-foreground mb-3">Game history</p>
+        <div className="px-4">
+          <p className="text-xs text-muted-foreground mb-3 mt-4">
+            Game history
+          </p>
 
           <div className="grid grid-cols-3 gap-3 text-center">
             <div className="bg-muted p-2 rounded-md">

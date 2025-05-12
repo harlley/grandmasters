@@ -1,4 +1,4 @@
-export const games = {
+export const stats = {
   chess_rapid: {
     last: {
       rating: 2516,

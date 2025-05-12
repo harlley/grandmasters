@@ -3,12 +3,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GAMES } from "./constants";
 import { Stats } from "@/components/stats";
 
-export const StatsTabs = ({ games }: StatsTabsProps) => {
+export const StatsTabs = ({ stats }: StatsTabsProps) => {
   const defaultValue = GAMES.length > 0 ? GAMES[0].id : undefined;
 
   return (
     <Tabs defaultValue={defaultValue} className="w-full">
-      <TabsList className="w-full h-auto flex mb-3">
+      <TabsList className="w-full h-auto flex mb-0">
         {GAMES.map((game) => (
           <TabsTrigger key={game.id} value={game.id} className="flex-1 text-xs">
             {game.name}
@@ -17,7 +17,7 @@ export const StatsTabs = ({ games }: StatsTabsProps) => {
       </TabsList>
 
       {GAMES.map((game) => {
-        const gameData = games[game.id];
+        const gameData = stats[game.id];
 
         return (
           <TabsContent key={game.id} value={game.id}>

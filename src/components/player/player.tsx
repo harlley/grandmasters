@@ -20,8 +20,9 @@ import {
 } from "@/components/ui/drawer";
 import { Profile } from "@/components/profile";
 import { usePlayerProfile } from "@/api/fetchPlayerProfile";
-// import { usePlayerStats } from "@/api/fetchPlayerStats";
-
+import { usePlayerStats } from "@/api/fetchPlayerStats";
+import { StatsTabs } from "@/components/stats-tabs";
+import { GamesData } from "@/components/stats-tabs/stats-tabs.types";
 const PIECE_COMPONENTS = {
   pawn: Pawn,
   rook: Rook,
@@ -52,7 +53,7 @@ export const Player = ({ username, piece, color }: PlayerProps) => {
         </div>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
+        <DrawerHeader className="sr-only">
           <DrawerTitle>{username}</DrawerTitle>
         </DrawerHeader>
         {isOpen && (
@@ -68,9 +69,14 @@ export const Player = ({ username, piece, color }: PlayerProps) => {
 function PlayerData({ username }: { username: string }) {
   const { data: player } = usePlayerProfile(username, {});
 
-  // const { data: stats } = usePlayerStats(username, {
-  //   enabled: !!player,
-  // });
+  const { data: stats } = usePlayerStats(username, {
+    enabled: !!player,
+  });
 
-  return player ? <Profile player={player} /> : null;
+  return player ? (
+    <div className="flex flex-col gap-6 p-4 overflow-hidden">
+      <Profile player={player} />
+      <StatsTabs stats={stats as unknown as GamesData} />
+    </div>
+  ) : null;
 }
