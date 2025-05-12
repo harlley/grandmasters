@@ -1,13 +1,9 @@
 import { Suspense } from "react";
 import { PlayerList } from "@/components/player-list/player-list";
 import { fetchPlayers } from "@/api/fetchPlayers";
+import { SkeletonPlayers } from "@/components/skeleton-players";
 
 export const revalidate = 60;
-
-function LoadingPlayers() {
-  // TODO: Add a skeleton loader
-  return <p>Loading players...</p>;
-}
 
 async function PlayerListData() {
   const players = await fetchPlayers();
@@ -16,7 +12,7 @@ async function PlayerListData() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<LoadingPlayers />}>
+    <Suspense fallback={<SkeletonPlayers />}>
       <PlayerListData />
     </Suspense>
   );

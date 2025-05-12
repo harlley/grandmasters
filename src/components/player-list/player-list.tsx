@@ -6,6 +6,7 @@ export const PlayerList = ({ players }: PlayerListProps) => {
     players.indexOf(username) % 2 === 0 ? "gm-dark-square" : "gm-light-square";
   return (
     <div className="p-4">
+      <h1 className="text-2xl font-bold text-center my-6">Grandmasters</h1>
       {players.map((username) => (
         <Player
           key={username}

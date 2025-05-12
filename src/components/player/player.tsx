@@ -23,6 +23,8 @@ import { usePlayerProfile } from "@/api/fetchPlayerProfile";
 import { usePlayerStats } from "@/api/fetchPlayerStats";
 import { StatsTabs } from "@/components/stats-tabs";
 import { GamesData } from "@/components/stats-tabs/stats-tabs.types";
+import { SkeletonProfile } from "@/components/skeleton-profile";
+
 const PIECE_COMPONENTS = {
   pawn: Pawn,
   rook: Rook,
@@ -57,7 +59,7 @@ export const Player = ({ username, piece, color }: PlayerProps) => {
           <DrawerTitle>{username}</DrawerTitle>
         </DrawerHeader>
         {isOpen && (
-          <Suspense fallback={<div>loading...</div>}>
+          <Suspense fallback={<SkeletonProfile />}>
             <PlayerData username={username} />
           </Suspense>
         )}
