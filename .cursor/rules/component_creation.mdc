@@ -3,37 +3,45 @@ description: component Creation
 globs: 
 alwaysApply: false
 ---
+component_creation
+
+component Creation
+
 Rule: Component Creation
 
 When creating a new component in this project, follow these conventions (example: player component):
 
-**Always carefully follow all rules below, especially naming conventions.** 
+**Always carefully follow all rules below, especially naming conventions.**
 
 1. Directory Structure
 - Each component must have its own folder under src/components/, named in kebab-case (lowercase, hyphen-separated, e.g., time-since for TimeSince).
 - The folder and all files inside it (including the main component file, types, constants, stories, and index) must use kebab-case strictly (e.g., time-since.tsx, time-since.types.ts, constants.ts, time-since.stories.tsx, index.ts).
 - The folder must contain:
   - [component].tsx: the main component file (e.g., time-since.tsx)
-  - index.ts: re-exports the main component
-  - [component].types.ts: TypeScript types for the component's props and related types (e.g., time-since.types.ts)
+  - index.ts: re-exports the component's exports
+  - [component].types.ts: TypeScript types for the component's props and related types (e.g., time-since.types.ts), if props exist.
   - constants.ts: for any constants used by the component
-  - [component].stories.tsx: Storybook stories for the component (e.g., time-since.stories.tsx)
+  - [component].stories.tsx: Minimal Storybook stories for the component (e.g., time-since.stories.tsx)
 
 2. Component Implementation
-- Use a functional component with TypeScript.
-- All props must be typed in [component].types.ts and imported into the main component file.
-- Export the component as the default export in [component].tsx.
+- Use a functional component with TypeScript. **Do not use `React.FC`.** Define props using an interface in `[component].types.ts` and type the `props` argument directly (e.g., `const TimeSince = (props: TimeSinceProps) => {...}`). If there are no props, omit the props argument (e.g., `const StatsTabs = () => {...}`).
+- All props must be typed in [component].types.ts and imported into the main component file using named imports.
+- Export the component as a **named export** in [component].tsx (e.g., `export const TimeSince = ...`).
 - Use named exports for types and constants.
 - **When creating a new component, use only simple boilerplate content. Do not infer or implement any logic or behavior unless it is explicitly requested.**
 
 3. Index File
-- The index.ts file must re-export the main component as the default export.
+- The index.ts file must re-export **all exports** from the main component file using `export * from './[component]';`.
 
 4. Constants
-- Place all constants in constants.ts and import them into the main component file as needed.
+- Place all constants in constants.ts and import them into the main component file as needed using named imports.
 
 5. Stories
-- Add a [component].stories.tsx file for Storybook stories, demonstrating the component's usage.
+- Add a [component].stories.tsx file for Storybook stories.
+- Keep the Storybook configuration **minimal**:
+  - Import the component using a named import (e.g., `import { TimeSince } from './time-since';`).
+  - Define the `meta` object with only the `component` property (e.g., `const meta = { component: TimeSince };`). **Do not include `title`, `parameters`, or `tags`.**
+  - Define stories as named exports (e.g., `export const Default: Story = {};`).
 
 6. General Guidelines
 - Keep components presentational; do not include business logic.
