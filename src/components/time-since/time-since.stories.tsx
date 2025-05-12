@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import TimeSince from "./time-since";
+import { TimeSince } from "./time-since";
 import { TimeSinceProps } from "./time-since.types";
 
 const meta: Meta<typeof TimeSince> = {

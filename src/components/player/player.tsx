@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/drawer";
 import { Profile } from "@/components/profile";
 import { usePlayerProfile } from "@/api/fetchPlayerProfile";
-import { usePlayerStats } from "@/api/fetchPlayerStats";
+// import { usePlayerStats } from "@/api/fetchPlayerStats";
 
 const PIECE_COMPONENTS = {
   pawn: Pawn,
@@ -31,7 +31,7 @@ const PIECE_COMPONENTS = {
   king: King,
 } as const;
 
-export const Player: React.FC<PlayerProps> = ({ username, piece, color }) => {
+export const Player = ({ username, piece, color }: PlayerProps) => {
   const PieceComponent = PIECE_COMPONENTS[piece];
 
   const isDark = color === "gm-dark-square";
@@ -68,9 +68,9 @@ export const Player: React.FC<PlayerProps> = ({ username, piece, color }) => {
 function PlayerData({ username }: { username: string }) {
   const { data: player } = usePlayerProfile(username, {});
 
-  const { data: stats } = usePlayerStats(username, {
-    enabled: !!player,
-  });
+  // const { data: stats } = usePlayerStats(username, {
+  //   enabled: !!player,
+  // });
 
-  return player ? <Profile player={player} stats={stats} /> : null;
+  return player ? <Profile player={player} /> : null;
 }

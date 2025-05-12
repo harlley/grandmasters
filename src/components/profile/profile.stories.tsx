@@ -35,3 +35,9 @@ export const Default: Story = {
     return <Profile player={loaded.player} />;
   },
 };
+
+export const NoAvatar: Story = {
+  render: () => {
+    return <Profile player={{ ...mock, avatar: undefined }} />;
+  },
+};

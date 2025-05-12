@@ -1,1 +1,1 @@
-export { default } from "./time-since";
+export * from "./time-since";

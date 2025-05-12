@@ -1,5 +1,5 @@
 export type Player = {
-  avatar: string;
+  avatar?: string;
   player_id: number;
   url: string;
   name: string;
