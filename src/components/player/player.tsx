@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import React, { useState, Suspense } from "react";
 import type { PlayerProps } from "./player.types";
 import {
   Pawn,
@@ -18,8 +19,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Profile } from "@/components/profile";
-import { useState } from "react";
-import { Player as PlayerType } from "@/components/types";
+import { usePlayerProfile } from "@/api/fetchPlayerProfile";
+import { usePlayerStats } from "@/api/fetchPlayerStats";
 
 const PIECE_COMPONENTS = {
   pawn: Pawn,
@@ -40,20 +41,12 @@ export const Player: React.FC<PlayerProps> = ({ username, piece, color }) => {
     "bg-gm-light-square text-gm-dark-square": !isDark,
   });
 
-  const [player, setPlayer] = useState<PlayerType | null>(null);
-
-  const onClick = async () => {
-    const response = await fetch(
-      `https://api.chess.com/pub/player/${username}`
-    );
-    const data = await response.json();
-    setPlayer(data);
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Drawer>
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>
-        <div className={className} onClick={onClick}>
+        <div className={className}>
           <PieceComponent width={32} height={32} />
           {username}
         </div>
@@ -62,16 +55,22 @@ export const Player: React.FC<PlayerProps> = ({ username, piece, color }) => {
         <DrawerHeader>
           <DrawerTitle>{username}</DrawerTitle>
         </DrawerHeader>
-        {player ? <Profile player={player} /> : <PlayerSkeleton />}
+        {isOpen && (
+          <Suspense fallback={<div>loading...</div>}>
+            <PlayerData username={username} />
+          </Suspense>
+        )}
       </DrawerContent>
     </Drawer>
   );
 };
 
-const PlayerSkeleton = () => {
-  return (
-    <div className="flex items-center gap-2 w-full p-4 cursor-pointer">
-      loading...
-    </div>
-  );
-};
+function PlayerData({ username }: { username: string }) {
+  const { data: player } = usePlayerProfile(username, {});
+
+  const { data: stats } = usePlayerStats(username, {
+    enabled: !!player,
+  });
+
+  return player ? <Profile player={player} stats={stats} /> : null;
+}

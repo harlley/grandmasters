@@ -1,5 +1,6 @@
-import { Player } from "@/components/types";
+import { Player, PlayerStats } from "@/components/types";
 
 export type ProfileProps = {
   player: Player;
+  stats?: PlayerStats;
 };

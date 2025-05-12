@@ -12,3 +12,9 @@ export type Player = {
   verified: boolean;
   league: string;
 };
+
+export type PlayerStats = {
+  chess_rapid?: { last: { rating: number }; best?: { rating: number } };
+  chess_blitz?: { last: { rating: number }; best?: { rating: number } };
+  chess_bullet?: { last: { rating: number }; best?: { rating: number } };
+};
