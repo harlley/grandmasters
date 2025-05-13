@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "./config";
 
 export const fetchPlayers = async (): Promise<string[]> => {
@@ -11,11 +10,4 @@ export const fetchPlayers = async (): Promise<string[]> => {
   const data = await response.json();
 
   return data.players;
-};
-
-export const usePlayers = () => {
-  return useQuery({
-    queryKey: ["players"],
-    queryFn: fetchPlayers,
-  });
 };

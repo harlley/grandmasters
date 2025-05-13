@@ -11,6 +11,7 @@ export type Player = {
   is_streamer: boolean;
   verified: boolean;
   league: string;
+  country: string;
 };
 
 export type PlayerStats = {

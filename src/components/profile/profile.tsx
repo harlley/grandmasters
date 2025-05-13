@@ -2,9 +2,12 @@ import Image from "next/image";
 import { ProfileProps } from "./profile.types";
 import { Badge } from "@/components/ui/badge";
 import { TimeSince } from "@/components/time-since";
-
+import { Country } from "@/components/country/country";
+import { Suspense } from "react";
 export const Profile = ({ player }: ProfileProps) => {
-  const { name, username, avatar, status, joined, last_online } = player;
+  const { name, username, avatar, status, joined, last_online, country } =
+    player;
+  const countryCode = country.split("/").pop();
 
   return (
     <div className="flex gap-4 items-start">
@@ -26,8 +29,9 @@ export const Profile = ({ player }: ProfileProps) => {
         {name && <p className="text-sm text-muted-foreground mb-1">{name}</p>}
 
         <div className="flex items-center gap-1 mb-1.5">
-          <span className="text-base">🇧🇷</span>
-          <span className="text-sm">Brazil</span>
+          <Suspense fallback={<span>Loading...</span>}>
+            {countryCode && <Country code={countryCode} />}
+          </Suspense>
         </div>
 
         <Badge variant="secondary" className="text-xs font-normal">
