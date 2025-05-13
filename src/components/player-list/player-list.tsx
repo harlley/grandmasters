@@ -1,5 +1,6 @@
 import { Player } from "../player/player";
 import { PlayerListProps } from "./player-list.types";
+import { PIECES } from "../../constants";
 
 export const PlayerList = ({ players }: PlayerListProps) => {
   const getColor = (username: string) =>
@@ -9,11 +10,11 @@ export const PlayerList = ({ players }: PlayerListProps) => {
       <h1 className="text-2xl font-bold text-center my-6 sticky top-0 z-10 bg-background py-4">
         Grandmasters
       </h1>
-      {players.map((username) => (
+      {players.map((username, index) => (
         <Player
           key={username}
           username={username}
-          piece="pawn"
+          piece={PIECES[index % PIECES.length]}
           color={getColor(username)}
         />
       ))}

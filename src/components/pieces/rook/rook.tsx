@@ -3,17 +3,18 @@ export const Rook: React.FC<React.SVGProps<SVGSVGElement>> = ({
   ...props
 }) => (
   <svg
-    viewBox="0 0 24 24"
+    viewBox="0 0 298 298"
     fill="currentColor"
     className={className}
     width={24}
     height={24}
     {...props}
   >
-    <rect x="7" y="10" width="10" height="8" rx="2" />
-    <rect x="7" y="6" width="2" height="4" />
-    <rect x="11" y="6" width="2" height="4" />
-    <rect x="15" y="6" width="2" height="4" />
-    <rect x="7" y="20" width="10" height="2" rx="1" />
+    <path
+      d="M216.923,246.538c3.457-6.556,9.963-22.777-1.666-39.137C200.508,186.65,179.942,125,193.61,83H207V0h-16v17h-16V0h-18v17
+      h-16V0h-17v17h-16V0H91v83h14.057c13.668,42-6.98,103.65-21.73,124.401c-11.629,16.359-5.373,32.706-1.916,39.262
+      C77.347,247.044,74,250.337,74,254.5v18c0,4.418,3.915,8.5,8.333,8.5H83v17h132v-17h1.333c4.418,0,7.667-4.082,7.667-8.5v-18
+      C224,250.338,220.986,246.92,216.923,246.538z"
+    />
   </svg>
 );
