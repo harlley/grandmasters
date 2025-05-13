@@ -1,5 +1,5 @@
 import { CountryProps } from "./country.types";
-import { useCountry } from "@/api/fetchCountry";
+import { useCountry } from "@/api/fetch-country";
 
 export const Country = ({ code }: CountryProps) => {
   const { data } = useCountry(code);

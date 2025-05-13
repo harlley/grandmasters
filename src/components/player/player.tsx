@@ -19,11 +19,13 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Profile } from "@/components/profile";
-import { usePlayerProfile } from "@/api/fetchPlayerProfile";
-import { usePlayerStats } from "@/api/fetchPlayerStats";
+import { usePlayerProfile } from "@/api/fetch-player-profile";
+import { usePlayerStats } from "@/api/fetch-player-stats";
 import { StatsTabs } from "@/components/stats-tabs";
 import { Stats } from "@/types";
 import { SkeletonProfile } from "@/components/skeleton-profile";
+import { ErrorBoundary } from "../error-boundary";
+import { Error } from "./error";
 
 const PIECE_COMPONENTS = {
   pawn: Pawn,
@@ -62,9 +64,13 @@ export const Player = ({ username, piece, color }: PlayerProps) => {
           <DrawerTitle>{username}</DrawerTitle>
         </DrawerHeader>
         {isOpen && (
-          <Suspense fallback={<SkeletonProfile />}>
-            <PlayerData username={username} />
-          </Suspense>
+          <ErrorBoundary
+            fallback={<Error message="Oops! Could not load player data." />}
+          >
+            <Suspense fallback={<SkeletonProfile />}>
+              <PlayerData username={username} />
+            </Suspense>
+          </ErrorBoundary>
         )}
       </DrawerContent>
     </Drawer>

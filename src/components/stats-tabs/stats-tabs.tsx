@@ -30,7 +30,9 @@ export const StatsTabs = ({ stats }: StatsTabsProps) => {
                 recordDraw={gameData.record?.draw}
               />
             ) : (
-              <div>No data available for {game.name}</div>
+              <div className="text-center text-sm h-[190px] py-10 flex items-center justify-center">
+                No data available for {game.name}
+              </div>
             )}
           </TabsContent>
         );

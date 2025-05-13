@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { TimeSince } from "@/components/time-since";
 import { Country } from "@/components/country/country";
 import { Suspense } from "react";
+import { ErrorBoundary } from "@/components/error-boundary";
+
 export const Profile = ({ player }: ProfileProps) => {
   const { name, username, avatar, status, joined, last_online, country } =
     player;
@@ -29,9 +31,23 @@ export const Profile = ({ player }: ProfileProps) => {
         {name && <p className="text-sm text-muted-foreground mb-1">{name}</p>}
 
         <div className="flex items-center gap-1 mb-1.5">
-          <Suspense fallback={<span>Loading...</span>}>
-            {countryCode && <Country code={countryCode} />}
-          </Suspense>
+          <ErrorBoundary
+            fallback={
+              <span className="text-sm text-muted-foreground">
+                Country data unavailable
+              </span>
+            }
+          >
+            <Suspense
+              fallback={
+                <span className="text-sm text-muted-foreground">
+                  Loading country...
+                </span>
+              }
+            >
+              {countryCode && <Country code={countryCode} />}
+            </Suspense>
+          </ErrorBoundary>
         </div>
 
         <Badge variant="secondary" className="text-xs font-normal">
