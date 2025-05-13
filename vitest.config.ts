@@ -30,6 +30,9 @@ export default defineConfig({
       "react",
       "vaul",
       "tailwind-merge",
+      "@tanstack/react-query",
+      "@radix-ui/react-tabs",
+      "@radix-ui/react-separator",
     ],
     exclude: [
       "util", // Exclude util from optimization
@@ -42,6 +45,11 @@ export default defineConfig({
         plugins: [
           storybookTest({ configDir: path.join(dirname, ".storybook") }),
         ],
+        resolve: {
+          alias: {
+            "@/": path.resolve(dirname, "./src/"),
+          },
+        },
         test: {
           name: "storybook",
           browser: {
