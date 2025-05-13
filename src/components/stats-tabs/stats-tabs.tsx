@@ -1,6 +1,6 @@
 import { StatsTabsProps } from "./stats-tabs.types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { GAMES } from "./constants";
+import { GAMES } from "@/constants";
 import { Stats } from "@/components/stats";
 
 export const StatsTabs = ({ stats }: StatsTabsProps) => {

@@ -1,6 +1,6 @@
 import { useSuspenseQuery, UseQueryOptions } from "@tanstack/react-query";
 import { API_URL, CACHE_TIME } from "./config";
-import { Player } from "@/components/types";
+import { Player } from "@/types";
 
 export const fetchPlayerProfile = async (username: string): Promise<Player> => {
   const response = await fetch(`${API_URL}/player/${username}`);

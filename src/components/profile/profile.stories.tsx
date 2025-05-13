@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { http, HttpResponse } from "msw";
 import { Profile } from "./profile";
-import { Player } from "@/components/types";
+import { Player } from "@/types";
 import { mock } from "./profile.mock";
 
 const endpoint = "https://api.chess.com/pub/player/john";

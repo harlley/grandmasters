@@ -1,6 +1,5 @@
-import { PIECES, COLORS } from "./constants";
-
-export type Piece = (typeof PIECES)[number];
+import { COLORS } from "./constants";
+import { Piece } from "@/types";
 
 export type Color = (typeof COLORS)[number];
 

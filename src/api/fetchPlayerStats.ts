@@ -1,6 +1,6 @@
 import { useSuspenseQuery, UseQueryOptions } from "@tanstack/react-query";
 import { API_URL, CACHE_TIME } from "./config";
-import { PlayerStats } from "@/components/types";
+import { PlayerStats } from "@/types";
 
 export const fetchPlayerStats = async (
   username: string

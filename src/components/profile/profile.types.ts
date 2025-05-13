@@ -1,4 +1,4 @@
-import { Player } from "@/components/types";
+import { Player } from "@/types";
 
 export type ProfileProps = {
   player: Player;

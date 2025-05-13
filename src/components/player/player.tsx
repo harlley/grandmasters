@@ -22,7 +22,7 @@ import { Profile } from "@/components/profile";
 import { usePlayerProfile } from "@/api/fetchPlayerProfile";
 import { usePlayerStats } from "@/api/fetchPlayerStats";
 import { StatsTabs } from "@/components/stats-tabs";
-import { Stats } from "@/components/stats-tabs/stats-tabs.types";
+import { Stats } from "@/types";
 import { SkeletonProfile } from "@/components/skeleton-profile";
 
 const PIECE_COMPONENTS = {

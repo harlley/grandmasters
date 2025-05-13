@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Player } from "./player";
-import { PIECES, COLORS } from "./constants";
+import { PIECES } from "@/constants";
+import { COLORS } from "./constants";
 import { mock } from "../profile/profile.mock";
 import { http, HttpResponse } from "msw";
 
@@ -27,7 +28,7 @@ const meta: Meta<typeof Player> = {
   ],
   argTypes: {
     piece: {
-      control: { type: "select" },
+      control: "select",
       options: PIECES,
     },
     color: {

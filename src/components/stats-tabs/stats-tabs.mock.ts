@@ -1,4 +1,4 @@
-import { Stats } from "./stats-tabs.types";
+import { Stats } from "@/types";
 
 export const stats: Stats = {
   chess_rapid: {
