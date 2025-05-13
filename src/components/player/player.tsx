@@ -78,11 +78,9 @@ export const Player = ({ username, piece, color }: PlayerProps) => {
 };
 
 function PlayerData({ username }: { username: string }) {
-  const { data: player } = usePlayerProfile(username, {});
+  const { data: player } = usePlayerProfile(username);
 
-  const { data: stats } = usePlayerStats(username, {
-    enabled: !!player,
-  });
+  const { data: stats } = usePlayerStats(username);
 
   return player ? (
     <div className="flex flex-col gap-6 p-4">
