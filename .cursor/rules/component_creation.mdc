@@ -3,10 +3,6 @@ description: component Creation
 globs: 
 alwaysApply: false
 ---
-component_creation
-
-component Creation
-
 Rule: Component Creation
 
 When creating a new component in this project, follow these conventions (example: player component):
@@ -23,31 +19,29 @@ When creating a new component in this project, follow these conventions (example
   - constants.ts: for any constants used by the component
   - [component].stories.tsx: Minimal Storybook stories for the component (e.g., time-since.stories.tsx)
 
-2. Component Implementation
-- Use a functional component with TypeScript. **Do not use `React.FC`.** Define props using an interface in `[component].types.ts` and type the `props` argument directly (e.g., `const TimeSince = (props: TimeSinceProps) => {...}`). If there are no props, omit the props argument (e.g., `const StatsTabs = () => {...}`).
+1. Component Implementation
+- Use a functional component with TypeScript. **Do not use `React.FC`.** Define props using a type in `[component].types.ts` and destructure the `props` argument inline (e.g., `const TimeSince = ({ prop1, prop2 }: TimeSinceProps) => {...}`). If there are no props, omit the props argument (e.g., `const StatsTabs = () => {...}`).
 - All props must be typed in [component].types.ts and imported into the main component file using named imports.
 - Export the component as a **named export** in [component].tsx (e.g., `export const TimeSince = ...`).
 - Use named exports for types and constants.
 - **When creating a new component, use only simple boilerplate content. Do not infer or implement any logic or behavior unless it is explicitly requested.**
 
-3. Index File
+1. Index File
 - The index.ts file must re-export **all exports** from the main component file using `export * from './[component]';`.
 
-4. Constants
+1. Constants
 - Place all constants in constants.ts and import them into the main component file as needed using named imports.
 
-5. Stories
+1. Stories
 - Add a [component].stories.tsx file for Storybook stories.
 - Keep the Storybook configuration **minimal**:
   - Import the component using a named import (e.g., `import { TimeSince } from './time-since';`).
   - Define the `meta` object with only the `component` property (e.g., `const meta = { component: TimeSince };`). **Do not include `title`, `parameters`, or `tags`.**
-  - Define stories as named exports (e.g., `export const Default: Story = {};`).
+  - Define only a default story as a named export (e.g., `export const Default: Story = {};`).
 
-6. General Guidelines
+1. General Guidelines
 - Keep components presentational; do not include business logic.
 - Use hooks for side effects.
-- Write clear, concise JSDoc comments for all exported functions and types.
-- Ensure all new components are covered by unit tests (test file not shown in the example, but required).
 
 Example: time-since component structure
 src/components/time-since/
