@@ -54,10 +54,10 @@ export const Player = ({ username, piece, color }: PlayerProps) => {
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>
-        <div className={className}>
+        <button className={className}>
           <PieceComponent width={32} height={32} />
           <span className="text-lg">{username}</span>
-        </div>
+        </button>
       </DrawerTrigger>
       <DrawerContent className="max-w-screen-lg mx-auto">
         <DrawerHeader className="sr-only">
